@@ -13,6 +13,10 @@ Vagrant.configure('2') do |config|
   config.vm.provision :chef_solo do |chef|
 
     chef.json = {
+      :mysql => {
+        :server_root_password => 'abadpassword',
+        :server_debian_password => 'averybadpassword'
+      }
     }
 
     chef.run_list = [

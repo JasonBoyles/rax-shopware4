@@ -19,7 +19,4 @@
 #
 
 
-node.set[:mysql][:server_root_password] = node[:rax_shopware4][:mysql][:server_root_password]
-node.set[:mysql][:server_debian_password] = node[:rax_shopware4][:mysql][:server_debian_password]
-
 include_recipe 'mysql::server'
