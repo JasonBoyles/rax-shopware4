@@ -19,6 +19,19 @@
 #
 
 
+package "php5" do
+  action :install
+end
+
+
 include_recipe 'mysql::server'
 include_recipe 'apache2::default'
 include_recipe 'apache2::mod_rewrite'
+include_recipe 'apache2::mod_php5'
+
+
+web_app "shopware" do
+  server_name node['hostname']
+  server_aliases [node['fqdn'], "example.com"]
+  docroot "/var/www"
+end
