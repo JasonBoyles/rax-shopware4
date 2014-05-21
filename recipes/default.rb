@@ -18,9 +18,10 @@
 # limitations under the License.
 #
 
-
-package "php5" do
-  action :install
+%w{php5 php5-curl php5-gd}.each do |pkg|
+  package "#{pkg}" do
+    action :install
+  end
 end
 
 
