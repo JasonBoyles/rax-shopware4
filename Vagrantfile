@@ -11,7 +11,7 @@ Vagrant.configure('2') do |config|
   config.vm.provision "shell", inline: "apt-get update && apt-get install build-essential"
 
   config.vm.provision :chef_solo do |chef|
-#    chef.cookbooks_path = [ '.' ]
+
     chef.json = {
     }
 
