@@ -42,7 +42,7 @@ bash 'install Shopware4 CLI tools' do
 end
 
 web_app "shopware" do
-  server_name node['hostname']
+  server_name 'localhost'
   server_aliases [node['fqdn'], "example.com"]
   docroot "/var/www"
 end
