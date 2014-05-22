@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-%w{php5 php5-curl php5-gd}.each do |pkg|
+%w{curl php5 php5-curl php5-gd}.each do |pkg|
   package "#{pkg}" do
     action :install
   end
@@ -30,6 +30,16 @@ include_recipe 'apache2::default'
 include_recipe 'apache2::mod_rewrite'
 include_recipe 'apache2::mod_php5'
 
+bash 'install Shopware4 CLI tools' do
+  user 'root'
+  cwd '/usr/local/bin'
+  code <<-EOH
+  curl -#L https://github.com/ShopwareAG/Shopware4-CLI-Tools/tarball/master |
+  tar -xzv --strip-components 1 --exclude={README.md,LICENSE-MIT} &&
+  chmod -R 777 /usr/local/bin/sw4-cli-tools &&
+  chmod -R 777 /usr/local/bin/.sw4-cli-tools
+  EOH
+end
 
 web_app "shopware" do
   server_name node['hostname']
